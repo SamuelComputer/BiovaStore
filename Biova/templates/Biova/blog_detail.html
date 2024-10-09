@@ -1,0 +1,49 @@
+{% extends "Biova/base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Blog Section -->
+<section class="products" id="products">
+
+    <!-- Static Blog Details Heading -->
+    <h1 class="heading" style="margin-top: 10%; text-align: center;">Blog Details</h1>
+
+    <div id="product-list">
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                
+                <!-- Blog Content Box -->
+                <div class="swiper-slide box">
+                    <!-- Blog Image with increased size -->
+                    <img src="{{ blog.picture.url }}" alt="Blog Image" style="width: 100%; max-width: 500px; height: auto; margin: 0 auto; display: block;">
+                    
+                    <!-- Blog Title -->
+                    <h3>{{ blog.name }}</h3>
+                    
+                    <!-- Blog Description with inline CSS for full justification and larger font size -->
+                    <div class="blog-description" style="text-align: justify; font-size: 18px; line-height: 1.8; color: #333; margin-bottom: 20px;">
+                        {{ blog.description|linebreaks }}
+                    </div>
+                    
+                    <!-- Blog Date with larger font size -->
+                    <div class="stars">
+                        <p class="date" style="font-size: 16px; font-weight: bold; color: #555;">{{ blog.date }}</p>
+                    </div>
+                    
+                    <!-- Action Button -->
+                    <a href="{% url 'Biova:index' %}" class="btn">Go back to home page</a>
+                </div>
+                <!-- End of Blog Content Box -->
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<!-- Custom JS file -->
+<script src="{% static 'Biova2/script.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "Biova/base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Product Section -->
+<section class="products" id="products">
+    <div id="product-list">
+        
+        <!-- Static Product Details Heading -->
+        <h1 class="heading" style="margin-top: 10%; text-align: center;">Product Details</h1>
+        
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                
+                <!-- Product Box -->
+                <div class="swiper-slide box">
+                    <!-- Product Image -->
+                    <img src="{{ product.picture.url }}" alt="Product Image">
+                    
+                    <!-- Product Name -->
+                    <h3>{{ product.name }}</h3>
+                    
+                    <!-- Product Price -->
+                    <div class="price">₦ {{ product.price }}</div>
+                    
+                    <!-- Product Rating -->
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    
+                    <!-- Product Description -->
+                    <p class="description">{{ product.description }}</p>
+                    
+                    <!-- Action Buttons -->
+                    <a href="#" class="btn">Add to Cart</a>
+                    <a href="{% url 'Biova:index' %}" class="btn">Go back to home page</a>
+                </div>
+                <!-- End of Product Box -->
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<!-- Custom JS file -->
+<script src="{% static 'Biova2/script.js' %}"></script>
+
+{% endblock %}

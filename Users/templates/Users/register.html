@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <!-- Embedded CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://www.usatoday.com/gcdn/media/2021/05/08/USATODAY/usatsports/imageForEntry35-1sQ.jpg?width=660&height=372&fit=crop&format=pjpg&auto=webp') no-repeat center center/cover;
+            background-attachment: fixed;
+            backdrop-filter: blur(4px); /* Slight blur for background */
+            position: relative;
+        }
+
+        /* Blurry background effect */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: blur(8px); /* Adjust the blur value as needed */
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2); /* Slight transparency */
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px); /* Blur effect inside container */
+            -webkit-backdrop-filter: blur(5px); /* For Safari support */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glassy look */
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .heading {
+            font-size: 2.5rem;
+            color: #130f40;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="password"] {
+            padding: 1rem;
+            border-radius: .5rem;
+            border: 1px solid #ddd;
+            font-size: 1.6rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.6); /* Slightly transparent input background */
+        }
+
+        form input[type="text"]::placeholder,
+        form input[type="email"]::placeholder,
+        form input[type="password"]::placeholder {
+            color: white;
+            opacity: 0.8; /* Slight transparency for placeholder text */
+        }
+
+        form button {
+            background: #ff7800;
+            color: white;
+            padding: 1rem;
+            border-radius: .5rem;
+            cursor: pointer;
+            font-size: 1.6rem;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background: #130f40;
+        }
+
+        a {
+            display: block;
+            margin-top: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #ff7800;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            html {
+                font-size: 50%;
+            }
+
+            .heading {
+                font-size: 2rem;
+            }
+
+            form input[type="text"],
+            form input[type="email"],
+            form input[type="password"],
+            form button {
+                font-size: 1.4rem;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heading">Create Account</div>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password1" placeholder="Password">
+            <input type="password" name="password2" placeholder="Confirm Password">
+            <button type="submit">Sign Up</button>
+        </form>
+        <a href="{% url 'login' %}">Already have an account? Login</a>
+    </div>
+
+</body>
+</html>

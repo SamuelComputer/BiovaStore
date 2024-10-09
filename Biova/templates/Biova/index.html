@@ -1,0 +1,302 @@
+{% extends "Biova/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>fresh and <span>organic</span> products for you</h3>
+        <p>Explore our range of sustainable products and enjoy a healthier lifestyle with nature's best.</p>
+        <a href="#products" class="btn">shop now</a>
+        
+    </nav>
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- features section starts  -->
+
+<section class="features" id="features">
+
+    <h1 class="heading"> our <span>features</span> </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="{% static 'image/feature-img-1.png' %}" alt="">
+            <h3>fresh and organic</h3>
+            <p>Our products are fresh and free from contamination!</p>
+            
+        </div>
+
+        <div class="box">
+            <img src="{% static 'image/feature-img-2.png' %}" alt="">
+            <h3>free delivery</h3>
+            <p>We offer free delivery of our products to any location across the continent!</p>
+            
+        </div>
+
+        <div class="box">
+            <img src="{% static 'image/feature-img-3.png' %}" alt="">
+            <h3>easy payments</h3>
+            <p>We provide simplified, fast and reliable payment methods!</p>
+            
+        </div>
+
+    </div>
+
+</section>
+
+<!-- features section ends -->
+
+<!-- products section starts  -->
+<section class="products" id="products">
+    <h1 class="heading"> our <span>products</span> </h1>
+
+    <div id="product-list">
+        {% for product in products %}
+        <div class="swiper product-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide box">
+                    <img src="{{ product.picture.url }}" alt="">
+                    <h3>{{ product.name }}</h3>
+                    <div class="price"> ₦ {{ product.price }} </div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="btn">add to cart</a>
+                    <a href="{% url 'Biova:detail' product.pk%}" class="btn">view details</a>
+                </div>
+            </div>
+        </div>
+         
+        {% endfor %}
+    </div>
+
+    <!-- Pagination Controls -->
+    <div style="display: flex; justify-content: center; margin: 20px 0;">
+        <ul style="list-style: none; display: flex; padding: 0;">
+            {% if products.has_previous %}
+            <li style="margin-right: 10px;">
+                <a href="?page={{ products.previous_page_number }}" class="pagination-link" data-page="{{ products.previous_page_number }}" style="text-decoration: none; padding: 10px 20px; background-color: #130f40; color: #fff; border-radius: 5px;">
+                    Previous
+                </a>
+            </li>
+            {% endif %}
+            
+            <li style="margin-right: 10px;">
+                <span style="padding: 10px 20px; background-color: #ff7800; color: #fff; border-radius: 5px;">
+                    {{ products.number }}
+                </span>
+            </li>
+            
+            {% if products.has_next %}
+            <li>
+                <a href="?page={{ products.next_page_number }}" class="pagination-link" data-page="{{ products.next_page_number }}" style="text-decoration: none; padding: 10px 20px; background-color: #130f40; color: #fff; border-radius: 5px;">
+                    Next
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</section>
+<!-- products section ends -->
+
+
+
+
+<!-- categories section starts  -->
+
+<section class="categories" id="categories">
+
+    <h1 class="heading"> product <span>categories</span> </h1>
+
+    
+        <div class="box-container">
+            {% for category in category %}
+            <div class="box">
+                <img src="{{ category.picture.url }}" alt="">
+                <h3>{{ category.name }}</h3>
+                <p>{{ category.description }}</p>
+                <a href="#products" class="btn">shop now</a>
+            </div>
+
+        {% endfor %}
+
+</section>
+
+<!-- categories section ends -->
+
+
+
+
+
+
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+    <h1 class="heading"> customer's <span>review</span> </h1>
+
+    {% for review in review %}
+    
+    <div class="swiper review-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide box">
+                <img src="{{ review.picture.url }}" alt="">
+                <p>{{ review.review }}</p>
+                <h3>{{ review.name }}</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+        </div>  
+    </div>      
+
+    {% endfor %}
+</section>
+
+<!-- review section ends -->
+
+
+
+
+<!-- blogs section starts  -->
+
+<section class="blogs" id="blogs">
+
+    <h1 class="heading"> our <span>blogs</span> </h1>
+    
+    <div class="box-container">
+        {% for blog in blog %}
+        <div class="box">
+            <img src="{{ blog.picture.url }}" alt="">
+            
+            <div class="content">
+                <div class="icons">
+                    
+                    <a href="#"> <i class="fas fa-calendar"></i>{{ blog.date }} </a>
+                </div>
+                
+                <h3>{{ blog.name }}</h3>
+                
+                <a href="{% url 'Biova:blog' blog.pk%}" class="btn">read more</a>
+            </div>
+        </div>
+        {% endfor %}
+     
+    </div>
+
+</section>
+
+<!-- blogs section ends -->
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3> Biova <i class="fas fa-shopping-basket"></i> </h3>
+            <p>Explore our range of sustainable products and enjoy a healthier lifestyle with nature's best.</p>
+            <div class="share">
+                <a href="#" class="fab fa-facebook-f"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-linkedin"></a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +234-70-8594-7433 </a>
+            <a href="#" class="links"> <i class="fas fa-phone"></i> +234-91-6666-1392 </a>
+            <a href="#" class="links"> <i class="fas fa-envelope"></i> samuelsundayiyanu@gmail.com </a>
+            <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> Niger, Nigeria </a>
+        </div>
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#" class="links"> <i class="fas fa-arrow-right"></i> home </a>
+            <a href="#features" class="links"> <i class="fas fa-arrow-right"></i> features </a>
+            <a href="#products" class="links"> <i class="fas fa-arrow-right"></i> products </a>
+            <a href="#categories" class="links"> <i class="fas fa-arrow-right"></i> categories </a>
+            <a href="#review" class="links"> <i class="fas fa-arrow-right"></i> review </a>
+            <a href="#blogs" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
+        </div>
+
+        <div class="box">
+            <h3>newsletter</h3>
+            <p>subscribe for latest updates</p>
+            <input type="name" placeholder="your name" class="email">
+            <input type="email" placeholder="your email" class="email">
+            <a href="#" onclick="sendMail()" class="btn">subscribe</a>
+         
+            <img src="{% static 'image/payment.png' %}"  class="payment-img" alt="">
+        </div>
+
+    </div>
+
+    <div class="credit"> created by <span><a href="#">Samuel Sunday Iyanu </a></span> | all rights reserved </div>
+
+</section>
+
+<!-- footer section ends -->
+
+
+
+
+   
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+
+<script>
+
+function sendMail(){
+    alert("You have succesfully subscribed to our Newsletter!")
+
+}
+
+
+</script>
+
+</body>
+</html>
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<script src="{% static 'Biova2/script.js' %}"></script>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+
+   
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://www.usatoday.com/gcdn/media/2021/05/08/USATODAY/usatsports/imageForEntry35-1sQ.jpg?width=660&height=372&fit=crop&format=pjpg&auto=webp') no-repeat center center/cover;
+            background-attachment: fixed;
+            backdrop-filter: blur(4px); /* Slight blur for background */
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2); /* Slight transparency */
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px); /* Blur effect inside container */
+            -webkit-backdrop-filter: blur(5px); /* For Safari support */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glassy look */
+            max-width: 400px;
+            width: 100%;
+        }
+
+        div {
+            font-size: 2.5rem;
+            color: #130f40;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            font-size: 1.8rem;
+            color: white;
+            background-color: #ff7800;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 1.5rem;
+        }
+
+        a:hover {
+            background-color: #130f40;
+        }
+
+        @media (max-width: 768px) {
+            div {
+                font-size: 2rem;
+            }
+            a {
+                font-size: 1.6rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            div {
+                font-size: 1.8rem;
+            }
+            a {
+                font-size: 1.4rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div>You Have Been Logged Out</div>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+
+</body>
+</html>
